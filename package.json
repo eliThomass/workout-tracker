@@ -1,0 +1,24 @@
+{
+  "name": "workout-tracker",
+  "version": "1.0.0",
+  "description": "A workout tracker application built using Node.js and MongoDB. Supports custom exercises and workout history.",
+  "homepage": "https://github.com/eliThomass/workout-tracker#readme",
+  "bugs": {
+    "url": "https://github.com/eliThomass/workout-tracker/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliThomass/workout-tracker.git"
+  },
+  "license": "ISC",
+  "author": "Eli Thomas",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "mongoose": "^9.5.0"
+  }
+}
