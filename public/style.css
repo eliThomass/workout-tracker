@@ -1,0 +1,338 @@
+/* WCAG Styling */ 
+   :root {
+    --primary-color: #0056b3; /* Dark blue for high contrast against white */
+    --primary-hover: #004494;
+    --success-color: #2e7d32; 
+    --error-bg: #ffebee;
+    --error-text: #c62828; /* High contrast red */
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-main: #212529; /* Very dark grey */
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+    --focus-ring: 0 0 0 3px rgba(0, 86, 179, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#logout-button {
+    color: red;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    /* Responsive constraint: Works up to 1920px comfortably */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Layout */ 
+h1, h2, h3, h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px; 
+    margin: 0 auto;
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+/* Header and navigation */ 
+.app-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.app-header h1 {
+    color: white;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+#main-nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover, .nav-btn:focus {
+    background: white;
+    color: var(--primary-color);
+    outline: none;
+}
+
+/* UI Components */ 
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+/* WCAG: Highly visible focus states */
+input:focus, select:focus, button:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: var(--focus-ring);
+}
+
+button {
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* WCAG: Minimum touch target size (44px via padding) */
+.btn-primary, .btn-success, .btn-secondary {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    transition: background 0.2s;
+    width: 100%;
+}
+
+.btn-primary { background-color: var(--primary-color); }
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-success { background-color: var(--success-color); }
+.btn-success:hover { background-color: #1b5e20; }
+
+.btn-secondary { 
+    background-color: transparent; 
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+.btn-secondary:hover { background-color: #e9ecef; }
+
+/* Structure utils */
+.input-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.input-row > * { flex: 1; }
+.align-bottom { align-items: flex-end; }
+.flex-grow { flex-grow: 2; }
+.mt-2 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 1.5rem; }
+.hidden { display: none !important; }
+
+/* Error notifications, visually distinct communication */ 
+#notification-area {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.notify-error {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border: 2px solid var(--error-text);
+}
+
+.notify-success {
+    background-color: #e8f5e9;
+    color: var(--success-color);
+    border: 2px solid var(--success-color);
+}
+
+#close-notification {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: inherit;
+    line-height: 1;
+}
+
+/*   SPECIFIC VIEWS */
+
+.auth-forms-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-header button {
+    width: auto;
+}
+
+/* History Cards */
+.history-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.history-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.history-summary {
+    margin-left: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.medal-icon {
+    color: #f5b041; /* Gold */
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+#logout-btn {
+    border-color: var(--error-text);
+    color: var(--error-text);
+}
+
+#logout-btn:hover, #logout-btn:focus {
+    background-color: var(--error-text);
+    color: white;
+}
+
+.expanded-details ul {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.expanded-details li {
+    margin-bottom: 0.3rem;
+}
+
+/* =========================================
+   LIVE WORKOUT TIMER
+   ========================================= */
+.relative-card {
+    position: relative;
+}
+
+.workout-timer {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    background-color: var(--bg-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    font-family: monospace; /* Keeps the numbers aligned as they tick */ 
+}
+
+@media (max-width: 400px) {
+    .workout-timer {
+        position: static;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+}
+
+/* MOBILE RESPONSIVENESS (max-width 600px) */
+@media (max-width: 600px) {
+    /* Ensure forms stack on 375px mobile screens */
+    .input-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .section-header button {
+        width: 100%;
+    }
+    
+    #main-nav {
+        justify-content: center;
+        width: 100%;
+    }
+}

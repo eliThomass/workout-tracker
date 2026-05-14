@@ -1,0 +1,155 @@
+<!-- Going for a single page application (SPA)
+    since we aren't using React --!>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work-It | Workout Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/weight-icon.png">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-container">
+            <h1>Work-It Workout Tracker</h1>
+            <nav id="main-nav" class="hidden" aria-label="Main Navigation">
+                <button type="button" class="nav-btn" data-target="dashboard-section">Dashboard</button>
+                <button type="button" class="nav-btn" data-target="history-section">History</button>
+                <button type="button" class="nav-btn" data-target="library-section">Exercises</button>
+                <button type="button" id="logout-btn" class="nav-btn btn-secondary">Log Out</button>
+            </nav>
+        </div>
+    </header>
+
+    <div id="notification-area" class="hidden" aria-live="assertive" role="alert">
+        <p id="notification-text"></p>
+        <button type="button" id="close-notification" aria-label="Close notification">&times;</button>
+    </div>
+
+    <main class="container">
+        <section id="auth-section" class="view-section">
+            <div class="auth-forms-container">
+                <form id="login-form" class="card">
+                    <h2>Log In</h2>
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" required autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="btn-primary">Log In</button>
+                </form>
+
+                <form id="signup-form" class="card">
+                    <h2>Create Account</h2>
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <input type="email" id="signup-email" required autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" required autocomplete="new-password">
+                    </div>
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="dashboard-section" class="view-section hidden">
+            <header class="section-header">
+                <h2>Active Workout</h2>
+                <button type="button" id="start-workout-btn" class="btn-primary">Start New Workout</button>
+                <button type="button" id="finish-workout-btn" class="btn-success hidden">Finish &amp; Save Workout</button>
+            </header>
+
+            <div id="active-workout-area" class="hidden card">
+                <div id="workout-timer" class="workout-timer" aria-live="polite">00:00</div>
+                <h3>Log an Exercise</h3>
+                <form id="log-set-form">
+                    <div class="form-group">
+                        <label for="exercise-select">Select Exercise</label>
+                        <select id="exercise-select" required>
+                            <option value="">-- Choose an Exercise --</option>
+                            </select>
+                    </div>
+                    
+                    <div class="input-row">
+                        <div class="form-group">
+                            <label for="set-weight">Weight (lbs)</label>
+                            <input type="number" id="set-weight" min="0" step="0.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="set-reps">Reps</label>
+                            <input type="number" id="set-reps" min="1" step="1" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Log Set</button>
+                </form>
+
+                <div id="current-workout-log" class="mt-2">
+                    <h4>Current Session Log</h4>
+                    <ul id="active-sets-list" class="log-list">
+                        </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="history-section" class="view-section hidden">
+            <header class="section-header">
+                <h2>Workout History</h2>
+                <div class="controls">
+                    <label for="sort-history">Sort By:</label>
+                    <select id="sort-history">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="sets">Highest # of Sets</option>
+                        <option value="records">Most Records Broken</option>
+                    </select>
+                </div>
+            </header>
+            
+            <div id="history-container" class="history-list">
+                </div>
+        </section>
+
+        <section id="library-section" class="view-section hidden">
+            <header class="section-header">
+                <h2>Exercise Library</h2>
+            </header>
+            
+            <div class="card mb-2">
+                <h3>Add Custom Exercise</h3>
+                <form id="custom-exercise-form" class="input-row align-bottom">
+                    <div class="form-group flex-grow">
+                        <label for="custom-ex-name">Exercise Name</label>
+                        <input type="text" id="custom-ex-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="custom-ex-group">Muscle Group</label>
+                        <select id="custom-ex-group">
+                            <option value="Chest">Chest</option>
+                            <option value="Back">Back</option>
+                            <option value="Legs">Legs</option>
+                            <option value="Arms">Arms</option>
+                            <option value="Shoulders">Shoulders</option>
+                            <option value="Core">Core</option>
+                            <option value="Cardio">Cardio</option>
+                            <option value="Other" selected>Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Add</button>
+                </form>
+            </div>
+
+            <div id="exercise-list-container">
+                </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
